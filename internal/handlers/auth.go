@@ -13,6 +13,14 @@ import (
 	"github.com/aryadisastra/authentication/internal/models"
 )
 
+// @Summary Register user
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param payload body dto.RegisterRequest true "Register payload"
+// @Success 201 {object} httpx.Envelope{data=dto.ProfileResponse}
+// @Failure 400 {object} httpx.Envelope
+// @Router /auth/register [post]
 func Register(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var req dto.RegisterRequest
@@ -53,6 +61,14 @@ func Register(db *gorm.DB) gin.HandlerFunc {
 	}
 }
 
+// @Summary Login
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param payload body dto.LoginRequest true "Login payload"
+// @Success 200 {object} httpx.Envelope{data=dto.LoginResponse}
+// @Failure 401 {object} httpx.Envelope
+// @Router /auth/login [post]
 func Login(db *gorm.DB, jwtSecret string, ttlMinutes int) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var req dto.LoginRequest
@@ -86,6 +102,13 @@ func Login(db *gorm.DB, jwtSecret string, ttlMinutes int) gin.HandlerFunc {
 	}
 }
 
+// @Summary Get profile (me)
+// @Tags auth
+// @Security Bearer
+// @Produce json
+// @Success 200 {object} httpx.Envelope{data=dto.ProfileResponse}
+// @Failure 401 {object} httpx.Envelope
+// @Router /auth/me [get]
 func Me(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		uid, _ := c.Get("user_id")

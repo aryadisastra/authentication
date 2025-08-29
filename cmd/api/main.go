@@ -7,6 +7,7 @@ import (
 	"github.com/aryadisastra/authentication/internal/db"
 	"github.com/aryadisastra/authentication/internal/router"
 
+	_ "github.com/aryadisastra/authentication/internal/swagger"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
