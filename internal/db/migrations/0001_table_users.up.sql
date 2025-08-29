@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS TB_M_USER (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_users_username ON TB_M_USER(username);
+CREATE INDEX IF NOT EXISTS idx_users_email ON TB_M_USER(email);
